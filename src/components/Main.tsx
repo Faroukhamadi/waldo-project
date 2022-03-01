@@ -1,9 +1,19 @@
 import React from 'react';
+import waldoBeach from '../images/beach-waldo.jpg';
 
-type Props = {};
+type Props = {
+  xCoordinate: string | number;
+  yCoordinate: string | number;
+};
 
 const Main = (props: Props) => {
-  return <div className="main">Main</div>;
+  console.log(props.xCoordinate);
+
+  return (
+    <div className="main">
+      <img src={waldoBeach} alt="" />
+    </div>
+  );
 };
 
 export default Main;
