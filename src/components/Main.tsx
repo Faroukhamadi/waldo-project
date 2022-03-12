@@ -16,6 +16,9 @@ const Main = (props: Props) => {
   const [showPopup, setShowPopup] = useState(false);
   const [eventOffsetX, setEventOffsetX] = useState(0);
   const [eventOffsetY, setEventOffsetY] = useState(0);
+  const [isFoundWaldo, setIsFoundWaldo] = useState(false);
+  const [isFoundOdlaw, setIsFoundOdlaw] = useState(false);
+  const [isFoundWhiteBeard, setIsFoundWhiteBeard] = useState(false);
   const handleClick = (e: event) => {
     let currentTargetRect: DOMRect = e.currentTarget.getBoundingClientRect();
     const event_offsetX: number = e.pageX - currentTargetRect.left,
@@ -39,7 +42,16 @@ const Main = (props: Props) => {
     <div className="main">
       <img src={waldoBeach} alt="waldo" onClick={handleClick} />
       {showPopup && (
-        <Popup eventOffsetX={eventOffsetX} eventOffsetY={eventOffsetY} />
+        <Popup
+          eventOffsetX={eventOffsetX}
+          eventOffsetY={eventOffsetY}
+          isFoundWaldo={isFoundWaldo}
+          isFoundOdlaw={isFoundOdlaw}
+          isFoundWhiteBeard={isFoundWhiteBeard}
+          setIsFoundWhiteBeard={setIsFoundWhiteBeard}
+          setIsFoundWaldo={setIsFoundWaldo}
+          setIsFoundOdlaw={setIsFoundOdlaw}
+        />
       )}
     </div>
   );

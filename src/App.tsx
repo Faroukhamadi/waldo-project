@@ -16,21 +16,24 @@ const App = () => {
     const getWaldoData = async () => {
       const waldoData = await getDocs(waldoCollectionRef);
       waldoData.docs.forEach((doc) => {
-        console.log('waldo data: ', doc.data());
+        // TODO: maybe uncomment this later
+        // console.log('waldo data: ', doc.data());
       });
     };
 
     const getOdlawData = async () => {
       const odlawData = await getDocs(odlawCollectionRef);
       odlawData.docs.forEach((doc) => {
-        console.log('odlaw data: ', doc.data());
+        // TODO: maybe uncomment this later
+        // console.log('odlaw data: ', doc.data());
       });
     };
 
     const getWhiteBeardData = async () => {
       const whiteBeardData = await getDocs(whiteBeardCollectionRef);
       whiteBeardData.docs.forEach((doc) => {
-        console.log('whitebeard data: ', doc.data());
+        // TODO: maybe uncomment this later
+        // console.log('whitebeard data: ', doc.data());
       });
     };
 
