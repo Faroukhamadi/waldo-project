@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { db } from '../firebase-config';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
@@ -15,6 +15,7 @@ type Props = {
 };
 
 const Popup = (props: Props) => {
+  const [isFound, setIsFound] = useState(false);
   console.log('We in this bitch');
   const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     let id = '';
@@ -71,8 +72,18 @@ const Popup = (props: Props) => {
     updateDoc(odlawDoc, { isFound: props.isFoundOdlaw });
     updateDoc(waldoDoc, { isFound: props.isFoundWaldo });
     updateDoc(whiteBeardDoc, { isFound: props.isFoundWhiteBeard });
+    if (
+      props.isFoundOdlaw !== false ||
+      props.isFoundWaldo !== false ||
+      props.isFoundWhiteBeard !== false
+    ) {
+      setIsFound(true);
+      setTimeout(() => setIsFound(false), 500);
+    }
     if (props.isFoundOdlaw && props.isFoundWaldo && props.isFoundWhiteBeard) {
-      console.log('youve won');
+      updateDoc(odlawDoc, { isFound: false });
+      updateDoc(waldoDoc, { isFound: false });
+      updateDoc(whiteBeardDoc, { isFound: false });
     }
   }, [props.isFoundOdlaw, props.isFoundWaldo, props.isFoundWhiteBeard]);
 
@@ -84,6 +95,7 @@ const Popup = (props: Props) => {
         left: props.eventOffsetX + 45,
       }}
     >
+      {isFound && <li>You Found One!</li>}
       <li className="popup-waldo" onClick={handleClick}>
         waldo
       </li>
