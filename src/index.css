@@ -67,3 +67,22 @@ body,
   width: 95%;
   height: 95%;
 }
+
+.popup {
+  list-style-type: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 6px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.popup > li {
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.popup > li:hover {
+  background-color: rgb(247, 247, 247);
+}
