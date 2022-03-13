@@ -2,6 +2,7 @@ import { red } from '@mui/material/colors';
 import React, { useState } from 'react';
 import waldoBeach from '../images/beach-waldo.jpg';
 import Popup from './Popup';
+import InputPopup from '../components/InputPopup';
 
 type Props = {
   xCoordinate: string | number;
@@ -13,6 +14,12 @@ type Props = {
 type event = React.MouseEvent<HTMLImageElement, MouseEvent>;
 
 const Main = (props: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleInputPopup = () => {
+    setIsOpen(!isOpen);
+  };
+
   const [showPopup, setShowPopup] = useState(false);
   const [eventOffsetX, setEventOffsetX] = useState(0);
   const [eventOffsetY, setEventOffsetY] = useState(0);
@@ -35,6 +42,7 @@ const Main = (props: Props) => {
   };
   return (
     <div className="main">
+      {isOpen && <InputPopup toggleInputPopup={toggleInputPopup} />}
       <img src={waldoBeach} alt="waldo" onClick={handleClick} />
       {showPopup && (
         <Popup
@@ -46,6 +54,9 @@ const Main = (props: Props) => {
           setIsFoundWhiteBeard={setIsFoundWhiteBeard}
           setIsFoundWaldo={setIsFoundWaldo}
           setIsFoundOdlaw={setIsFoundOdlaw}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          toggleInputPopup={toggleInputPopup}
         />
       )}
     </div>

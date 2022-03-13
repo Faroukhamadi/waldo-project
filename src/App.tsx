@@ -13,18 +13,37 @@ const App = () => {
 
   useEffect(() => {
     const secondInterval = setInterval(() => {
-      setSeconds((prevSecond) => prevSecond + 1);
+      setSeconds((prevSecond) => {
+        if (seconds >= 59) {
+          return 0;
+        } else {
+          return prevSecond + 1;
+        }
+      });
+      setMinutes((prevMinute) => {
+        if (seconds >= 59) {
+          return prevMinute + 1;
+        } else {
+          return prevMinute;
+        }
+      });
     }, 1000);
 
     const minuteInterval = setInterval(() => {
-      setMinutes((prevMinute) => prevMinute + 1);
+      setMinutes((prevMinute) => {
+        if (minutes >= 59) {
+          return 0;
+        } else {
+          return prevMinute + 1;
+        }
+      });
     }, 60000);
 
     return () => {
       clearInterval(secondInterval);
       clearInterval(minuteInterval);
     };
-  }, []);
+  }, [minutes, seconds]);
 
   return (
     <div className="app">

@@ -12,10 +12,14 @@ type Props = {
   setIsFoundWhiteBeard: React.Dispatch<React.SetStateAction<boolean>>;
   setIsFoundWaldo: React.Dispatch<React.SetStateAction<boolean>>;
   setIsFoundOdlaw: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleInputPopup: () => void;
 };
 
 const Popup = (props: Props) => {
   const [isFound, setIsFound] = useState(false);
+
   const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     let id = '';
     if (e.currentTarget.textContent === 'odlaw') {
@@ -81,6 +85,8 @@ const Popup = (props: Props) => {
       updateDoc(odlawDoc, { isFound: false });
       updateDoc(waldoDoc, { isFound: false });
       updateDoc(whiteBeardDoc, { isFound: false });
+      // TODO: write code here
+      props.toggleInputPopup();
     }
   }, [props.isFoundOdlaw, props.isFoundWaldo, props.isFoundWhiteBeard]);
 
