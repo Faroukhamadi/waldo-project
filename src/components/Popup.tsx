@@ -16,7 +16,6 @@ type Props = {
 
 const Popup = (props: Props) => {
   const [isFound, setIsFound] = useState(false);
-  console.log('We in this bitch');
   const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     let id = '';
     if (e.currentTarget.textContent === 'odlaw') {
@@ -55,8 +54,6 @@ const Popup = (props: Props) => {
             } else if (text === 'whitebeard') {
               props.setIsFoundWhiteBeard(true);
             }
-          } else {
-            console.log("He's not found");
           }
         });
       };

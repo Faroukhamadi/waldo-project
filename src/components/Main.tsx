@@ -27,17 +27,12 @@ const Main = (props: Props) => {
     setEventOffsetX(event_offsetX);
     setEventOffsetY(event_offsetY);
 
-    console.log(event_offsetX);
-    console.log(event_offsetY);
     if (showPopup === true) {
       setShowPopup(false);
     } else {
       setShowPopup(true);
     }
   };
-
-  console.log(showPopup);
-
   return (
     <div className="main">
       <img src={waldoBeach} alt="waldo" onClick={handleClick} />

@@ -8,43 +8,32 @@ import { collection, getDocs } from 'firebase/firestore';
 const App = () => {
   const [xCoordinate, setXCoordinate] = useState(0);
   const [yCoordinate, setYCoordinate] = useState(0);
-  const waldoCollectionRef = collection(db, 'waldo');
-  const odlawCollectionRef = collection(db, 'odlaw');
-  const whiteBeardCollectionRef = collection(db, 'whitebeard');
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    const getWaldoData = async () => {
-      const waldoData = await getDocs(waldoCollectionRef);
-      waldoData.docs.forEach((doc) => {
-        // TODO: maybe uncomment this later
-        // console.log('waldo data: ', doc.data());
-      });
-    };
+    const secondInterval = setInterval(() => {
+      setSeconds((prevSecond) => prevSecond + 1);
+    }, 1000);
 
-    const getOdlawData = async () => {
-      const odlawData = await getDocs(odlawCollectionRef);
-      odlawData.docs.forEach((doc) => {
-        // TODO: maybe uncomment this later
-        // console.log('odlaw data: ', doc.data());
-      });
-    };
+    const minuteInterval = setInterval(() => {
+      setMinutes((prevMinute) => prevMinute + 1);
+    }, 60000);
 
-    const getWhiteBeardData = async () => {
-      const whiteBeardData = await getDocs(whiteBeardCollectionRef);
-      whiteBeardData.docs.forEach((doc) => {
-        // TODO: maybe uncomment this later
-        // console.log('whitebeard data: ', doc.data());
-      });
+    return () => {
+      clearInterval(secondInterval);
+      clearInterval(minuteInterval);
     };
-
-    getWaldoData();
-    getOdlawData();
-    getWhiteBeardData();
   }, []);
 
   return (
     <div className="app">
-      <Header />
+      <Header
+        minutes={minutes}
+        seconds={seconds}
+        setMinutes={setMinutes}
+        setSeconds={setSeconds}
+      />
       <Main
         xCoordinate={xCoordinate}
         yCoordinate={yCoordinate}

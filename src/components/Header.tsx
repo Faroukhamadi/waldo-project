@@ -3,7 +3,12 @@ import waldo from '../images/waldo.png';
 import odlaw from '../images/odlaw.png';
 import whitebeard from '../images/whitebeard.png';
 
-type Props = {};
+type Props = {
+  minutes: number;
+  seconds: number;
+  setMinutes: React.Dispatch<React.SetStateAction<number>>;
+  setSeconds: React.Dispatch<React.SetStateAction<number>>;
+};
 
 const Header = (props: Props) => {
   return (
@@ -26,7 +31,9 @@ const Header = (props: Props) => {
           <p>WhiteBeard</p>
         </div>
       </div>
-      <p className="header-timer">05m:21s</p>
+      <p className="header-timer">
+        {props.minutes}m:{props.seconds}s
+      </p>
     </div>
   );
 };
